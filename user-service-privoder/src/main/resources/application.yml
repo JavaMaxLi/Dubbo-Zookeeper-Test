@@ -11,6 +11,7 @@ dubbo:
   scan:
     base-package: com.example.dubbo.userserviceprivoder.serviceImpl
 
+
 spring:
   application:
     name: user-provider
@@ -24,4 +25,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 
 mybatis:
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath*:com/example/dubbo/userserviceprivoder/bean/**/*.xml
+  typeAliasesPackage: com.example.dubbo.userserviceprivoder.bean.**.*
+  configuration:
+    map-underscore-to-camel-case: true
