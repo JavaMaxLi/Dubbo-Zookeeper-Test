@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-@Mapper
 public interface U1190KolMapper {
     U1190KolDBO doRead(@Param("puk") String puk);
 
