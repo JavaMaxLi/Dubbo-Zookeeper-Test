@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper
+        PUBLIC '-//mybatis.org//DTD Dao 3.0//EN'
+        'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<!-- 家游助力KOL -->
+<!-- 需要和DAO保持完全路径一致 -->
+<mapper namespace='com.example.dubbo.userserviceprivoder.bean.u1190Kol.U1190KolMapper'>
+    <!-- 表字段信息  -->
+    <sql id='tableColumns'>
+        puk,user_name,sex,head_pic,qzone_pic,wx_number,address,age,phone_number,personal_synopsis,sign,hobby,affiliated_community,grade,post,title,recommender,from_type,tag,membership_num,membership_num_used,examine_state
+    </sql>
+
+    <!-- 查询分页数据信息  -->
+    <select id='doSelectList' parameterType='com.example.dubbo.userserviceprivoder.bean.u1190Kol.U1190KolDBO' resultType='com.example.dubbo.userserviceprivoder.bean.u1190Kol.U1190KolDBO'>
+        SELECT
+        <include refid='tableColumns'/>
+        FROM u1190_kol
+        WHERE 1 = 1
+        <if test=' puk != null and puk !="" '><!-- 流水ID -->
+            AND puk = #{puk}
+        </if>
+        <if test=' userName != null and userName !="" '><!-- 姓名 -->
+            AND INSTR(user_name, #{userName}) != 0
+        </if>
+        <if test=' sex != null and sex !="" '><!-- 性别 -->
+            AND sex = #{sex}
+        </if>
+        <if test=' headPic != null and headPic !="" '><!-- 头像 -->
+            AND head_pic = #{headPic}
+        </if>
+        <if test=' qzonePic != null and qzonePic !="" '><!-- 空间照片 -->
+            AND qzone_pic = #{qzonePic}
+        </if>
+        <if test=' wxNumber != null and wxNumber !="" '><!-- 微信号 -->
+            AND wx_number = #{wxNumber}
+        </if>
+        <if test=' address != null and address !="" '><!-- 地址 -->
+            AND address = #{address}
+        </if>
+        <if test=' age != null and age !="" '><!-- 年龄 -->
+            AND age = #{age}
+        </if>
+        <if test=' phoneNumber != null and phoneNumber !="" '><!-- 手机号 -->
+            AND phone_number = #{phoneNumber}
+        </if>
+        <if test=' personalSynopsis != null and personalSynopsis !="" '><!-- 个人简介 -->
+            AND personal_synopsis = #{personalSynopsis}
+        </if>
+        <if test=' sign != null and sign !="" '><!-- 个性签名 -->
+            ,sign = #{sign}
+        </if>
+        <if test=' hobby != null and hobby !="" '><!-- 爱好 -->
+            AND hobby = #{hobby}
+        </if>
+        <if test=' affiliatedCommunity != null and affiliatedCommunity !="" '><!-- 所属社区 -->
+            AND affiliated_community = #{affiliatedCommunity}
+        </if>
+        <if test=' grade != null and grade !="" '><!-- 等级 -->
+            AND grade = #{grade}
+        </if>
+        <if test=' post != null and post !="" '><!-- 职务 -->
+            AND post = #{post}
+        </if>
+        <if test=' title != null and title !="" '><!-- 头衔 -->
+            AND title = #{title}
+        </if>
+        <if test=' recommender != null and recommender !="" '><!-- 推荐人 -->
+            AND recommender = #{recommender}
+        </if>
+        <if test=' fromType != null and fromType !="" '><!-- 来源 -->
+            AND from_type = #{fromType}
+        </if>
+        <if test=' tag != null and tag !="" '><!-- 标签 -->
+            AND tag = #{tag}
+        </if>
+        <if test=' membershipNum != null and membershipNum !="" '><!-- 免费会员名额 -->
+            AND membership_num = #{membershipNum}
+        </if>
+        <if test=' membershipNumUsed != null and membershipNumUsed !="" '><!-- 已使用会员名额 -->
+            AND membership_num_used = #{membershipNumUsed}
+        </if>
+        <if test=' examineState != null and examineState !="" '><!-- 审核状态 -->
+            AND examine_state = #{examineState}
+        </if>
+    </select>
+
+    <!-- 插入一条数据 -->
+    <insert id='doInsert' parameterType='com.example.dubbo.userserviceprivoder.bean.u1190Kol.U1190KolDBO'>
+        INSERT INTO u1190_kol
+        (<include refid='tableColumns'/>)
+        VALUES
+        (
+        #{puk},#{userName},#{sex},#{headPic},#{qzonePic},#{wxNumber},#{address},#{age},#{phoneNumber},#{personalSynopsis},#{sign},#{hobby},#{affiliatedCommunity},#{grade},#{post},#{title},#{recommender},#{fromType},#{tag},#{membershipNum},#{membershipNumUsed},#{examineState}
+        )
+    </insert>
+    <!-- 修改一条数据 -->
+    <update id='doUpdate' parameterType='com.example.dubbo.userserviceprivoder.bean.u1190Kol.U1190KolDBO'>
+        UPDATE u1190_kol SET update_time = #{uuu} <!-- 更新时间、更新者 -->
+        <if test=' puk != null and puk !="" '><!-- 流水ID -->
+            ,puk = #{puk}
+        </if>
+        <if test=' userName != null and userName !="" '><!-- 姓名 -->
+            ,user_name = #{userName}
+        </if>
+        <if test=' sex != null and sex !="" '><!-- 性别 -->
+            ,sex = #{sex}
+        </if>
+        <if test=' headPic != null and headPic !="" '><!-- 头像 -->
+            ,head_pic = #{headPic}
+        </if>
+        <if test=' qzonePic != null and qzonePic !="" '><!-- 空间照片 -->
+            ,qzone_pic = #{qzonePic}
+        </if>
+        <if test=' wxNumber != null and wxNumber !="" '><!-- 微信号 -->
+            ,wx_number = #{wxNumber}
+        </if>
+        <if test=' address != null and address !="" '><!-- 地址 -->
+            ,address = #{address}
+        </if>
+        <if test=' age != null and age !="" '><!-- 年龄 -->
+            ,age = #{age}
+        </if>
+        <if test=' phoneNumber != null and phoneNumber !="" '><!-- 手机号 -->
+            ,phone_number = #{phoneNumber}
+        </if>
+        <if test=' personalSynopsis != null and personalSynopsis !="" '><!-- 个人简介 -->
+            ,personal_synopsis = #{personalSynopsis}
+        </if>
+        <if test=' sign != null and sign !="" '><!-- 个性签名 -->
+            ,sign = #{sign}
+        </if>
+        <if test=' hobby != null and hobby !="" '><!-- 爱好 -->
+            ,hobby = #{hobby}
+        </if>
+        <if test=' affiliatedCommunity != null and affiliatedCommunity !="" '><!-- 所属社区 -->
+            ,affiliated_community = #{affiliatedCommunity}
+        </if>
+        <if test=' grade != null and grade !="" '><!-- 等级 -->
+            ,grade = #{grade}
+        </if>
+        <if test=' post != null and post !="" '><!-- 职务 -->
+            ,post = #{post}
+        </if>
+        <if test=' title != null and title !="" '><!-- 头衔 -->
+            ,title = #{title}
+        </if>
+        <if test=' recommender != null and recommender !="" '><!-- 推荐人 -->
+            ,recommender = #{recommender}
+        </if>
+        <if test=' fromType != null and fromType !="" '><!-- 来源 -->
+            ,from_type = #{fromType}
+        </if>
+        <if test=' tag != null and tag !="" '><!-- 标签 -->
+            ,tag = #{tag}
+        </if>
+        <if test=' membershipNum != null and membershipNum !="" '><!-- 免费会员名额 -->
+            ,membership_num = #{membershipNum}
+        </if>
+        <if test=' membershipNumUsed != null and membershipNumUsed !="" '><!-- 已使用会员名额 -->
+            ,membership_num_used = #{membershipNumUsed}
+        </if>
+        <if test=' examineState != null and examineState !="" '><!-- 审核状态 -->
+            ,examine_state = #{examineState}
+        </if>
+        WHERE 1 = 1
+        AND puk = #{puk}  <!-- 流水ID -->
+    </update>
+    <!-- 逻辑删除一条数据 -->
+    <delete id='toDelete' parameterType='com.example.dubbo.userserviceprivoder.bean.u1190Kol.U1190KolDBO'>
+        UPDATE u1190_kol
+        SET del_flag = '1', update_time = #{uuu}, updator = #{updator}
+        WHERE 1 = 1
+        <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+            AND update_time = #{updateTime}
+        </if>
+        AND puk = #{puk}  <!-- 流水ID -->
+    </delete>
+    <!-- 物理删除一条数据 -->
+    <delete id='doDelete' parameterType='com.example.dubbo.userserviceprivoder.bean.u1190Kol.U1190KolDBO'>
+        DELETE FROM u1190_kol
+        WHERE 1 = 1
+        <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+            AND update_time = #{updateTime}
+        </if>
+        AND puk = #{puk}  <!-- 流水ID -->
+    </delete>
+    <!-- 查询一条数据  -->
+    <select id='doRead' parameterType='java.lang.String' resultType='com.example.dubbo.userserviceprivoder.bean.u1190Kol.U1190KolDBO'>
+        SELECT
+        <include refid='tableColumns'/>
+        FROM u1190_kol WHERE 1 = 1
+        AND puk = #{puk}  <!-- 流水ID -->
+    </select>
+
+</mapper>
