@@ -19,8 +19,6 @@ import java.util.Random;
 public class DubboController {
     @Reference(check = false,version = "1.0")
     private UserBeanService dubboService;
-    @Reference
-    private U1190KolMapper u1190KolMapper;
 
     @RequestMapping("/findAll")
     @HystrixCommand(fallbackMethod = "hello")
@@ -36,14 +34,14 @@ public class DubboController {
 
     @RequestMapping(value = "/selectKol")
     public U1190KolDBO selectKol(String puk) {
-        return u1190KolMapper.doRead(puk);
+        return dubboService.doRead(puk);
     }
 
     @RequestMapping(value = "/getKolList")
     @HystrixCommand(fallbackMethod = "errorDefaultMethod")
     public List<U1190KolDBO> getKolList(U1190KolDBO param) {
 
-        return u1190KolMapper.doSelectList(param);
+        return dubboService.doSelectList(param);
     }
 
     public List<U1190KolDBO> errorDefaultMethod(U1190KolDBO param) {
