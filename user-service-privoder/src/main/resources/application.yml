@@ -6,7 +6,7 @@ dubbo:
     name: user-provider
   protocol: 20880
   registry:
-    address: zookeeper://127.0.0.1:2181
+    address: 127.0.0.1:2181,127.0.0.1:2191,127.0.0.1:2183
     protocol: zookeeper
   scan:
     base-package: com.example.dubbo.userserviceprivoder.serviceImpl

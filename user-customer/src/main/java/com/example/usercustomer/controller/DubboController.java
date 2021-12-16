@@ -3,17 +3,13 @@ package com.example.usercustomer.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.example.dubbo.userserviceprivoder.bean.UserBean;
 import com.example.dubbo.userserviceprivoder.bean.u1190Kol.U1190KolDBO;
-import com.example.dubbo.userserviceprivoder.bean.u1190Kol.U1190KolMapper;
 import com.example.dubbo.userserviceprivoder.service.UserBeanService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 @RestController
 public class DubboController {
