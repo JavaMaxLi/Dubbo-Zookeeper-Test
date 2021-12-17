@@ -87,6 +87,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--关联打包，先install提供者然后在打包消费者，因为消费者依赖提供者-->
                 <configuration>
                     <classifier>execute</classifier>
                 </configuration>
@@ -103,6 +104,7 @@
                     </include>
                 </includes>
             </resource>
+            <!--防止resources文件下漏打包-->
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
