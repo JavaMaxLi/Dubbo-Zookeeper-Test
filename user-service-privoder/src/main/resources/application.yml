@@ -6,13 +6,32 @@ dubbo:
     name: user-provider
   protocol: 20880
   registry:
-    address: 127.0.0.1:2181,127.0.0.1:2191,127.0.0.1:2183
+    address: 101.43.13.93:2181,101.43.13.93:2191,101.43.13.93:2183
     protocol: zookeeper
   scan:
     base-package: com.example.dubbo.userserviceprivoder.serviceImpl
 
 
 spring:
+  kafka:
+    bootstrap-servers: 101.43.13.93:9092,101.43.13.93:9093,101.43.13.93:9094  #集群地址配置
+    producer:    #生产者
+      retries: 3 #消息发送失败重试次数
+      batch-size: 16384
+      buffer-memory: 33554432
+      acks: 1   #消息发送到Leader，Leader确认并返回，消息发送成功
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: default-group #默认消费组
+      enable-auto-commit: false #关闭自动提交
+      auto-offset-reset: earliest #新的消费者从第一条消息开始消费
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      max-poll-records: 500 #一次最多拉取消息数量
+    listener:
+      ack-mode: MANUAL_IMMEDIATE  #手动提交需要配置此参数否则会报错No Acknowledgment available as an argument, the listener container must have a MANUAL AckMode to populate the Acknowledgment
+
   application:
     name: user-provider
 

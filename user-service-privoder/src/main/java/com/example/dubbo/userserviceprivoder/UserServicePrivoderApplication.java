@@ -9,7 +9,7 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 @SpringBootApplication
 @EnableDubbo
 @EnableHystrix
-@MapperScan("com.example.dubbo.userserviceprivoder.bean")
+@MapperScan("com.example.dubbo.userserviceprivoder")
 public class UserServicePrivoderApplication {
     public static void main(String[] args) {
 

@@ -22,7 +22,7 @@ public class Producer {
         properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
         KafkaProducer<String,String> producer = new KafkaProducer(properties);
-        ProducerRecord<String,String> producerRecord = new ProducerRecord<String,String>(TOPIC_NAME,"0","Java Test");
+        ProducerRecord<String,String> producerRecord = new ProducerRecord<String,String>(TOPIC_NAME,"0","Java Test 1111");
         //同步发送
         RecordMetadata recordMetadata = producer.send(producerRecord).get();
         System.out.println("=======topic="+recordMetadata.topic()+"，partition="+recordMetadata.partition()+"，offset="+recordMetadata.offset());
