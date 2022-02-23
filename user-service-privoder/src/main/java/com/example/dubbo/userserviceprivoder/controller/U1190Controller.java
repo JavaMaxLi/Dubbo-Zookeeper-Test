@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.Acknowledgment;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 public class U1190Controller {
@@ -41,8 +43,9 @@ public class U1190Controller {
      * @return
      */
     @RequestMapping(value = "/sendMessage")
-    public String sendMessage() {
-        kafkaTemplate.send(TOPIC_NAME,0,"key","this is a springboot message");
+    public String sendMessage(@PathVariable String topicName) {
+        Objects.requireNonNull(topicName);
+        kafkaTemplate.send(topicName,0,"key","this is a springboot message");
         return "success";
     }
 

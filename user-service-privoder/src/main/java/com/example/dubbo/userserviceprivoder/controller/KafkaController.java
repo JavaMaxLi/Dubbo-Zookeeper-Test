@@ -1,9 +1,12 @@
 package com.example.dubbo.userserviceprivoder.controller;
 
+import com.example.dubbo.userserviceprivoder.nettyDubboProvider.impl.HelloServiceImpl;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.PartitionOffset;
+import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
@@ -38,7 +41,12 @@ public class KafkaController {
      * @param record
      * @param ack
      */
-    @KafkaListener(topics = "second-topic",groupId = "default-group")
+    @KafkaListener(topics = "second-topic",groupId = "default-group"
+            , topicPartitions = {
+            @TopicPartition(topic = "second-topic",partitions = {"0"}),
+            @TopicPartition(topic = "first-topic",partitions = {"1"},partitionOffsets = @PartitionOffset(partition = "0", initialOffset = "3"))
+        }
+    )
     public void listenGroup(ConsumerRecord<String,String> record, Acknowledgment ack) {
         String value = record.value();
         System.out.println("========="+value);
